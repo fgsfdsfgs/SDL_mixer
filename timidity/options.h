@@ -77,6 +77,11 @@
 
 #if defined(__WIN32__) || defined(__OS2__)
 #define DEFAULT_PATH	"C:\\TIMIDITY"
+#elif defined(__SWITCH__)
+#define DEFAULT_PATH	"/timidity"
+#define DEFAULT_PATH1	"/switch/eternity/timidity"
+#define DEFAULT_PATH2	"/switch/odamex/timidity"
+#define DEFAULT_PATH3	"./timidity"
 #else
 #define DEFAULT_PATH	"/etc/timidity"
 #define DEFAULT_PATH1	"/usr/share/timidity"
