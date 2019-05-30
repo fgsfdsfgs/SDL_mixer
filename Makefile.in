@@ -46,7 +46,7 @@ LT_RELEASE  = @LT_RELEASE@
 LT_REVISION = @LT_REVISION@
 LT_LDFLAGS  = -no-undefined -rpath $(libdir) -release $(LT_RELEASE) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
 
-all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET) $(objects)/playwave$(EXE) $(objects)/playmus$(EXE)
+all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET) 
 
 $(srcdir)/configure: $(srcdir)/configure.in
 	@echo "Warning, configure.in is out of date"
@@ -67,7 +67,7 @@ $(objects)/$(TARGET): $(OBJECTS) $(VERSION_OBJECTS)
 $(objects)/playwave$(EXE): $(objects)/playwave.lo $(objects)/$(TARGET)
 	$(LIBTOOL) --mode=link $(CC) -o $@ $(objects)/playwave.lo $(SDL_CFLAGS) $(objects)/$(TARGET) $(SDL_LIBS) $(LDFLAGS)
 
-$(objects)/playmus$(EXE): $(objects)/playmus.lo $(objects)/$(TARGET)
+: $(objects)/playmus.lo $(objects)/$(TARGET)
 	$(LIBTOOL) --mode=link $(CC) -o $@ $(objects)/playmus.lo $(SDL_CFLAGS) $(objects)/$(TARGET) $(SDL_LIBS) $(LDFLAGS)
 
 install: all install-hdrs install-lib #install-bin
@@ -85,7 +85,7 @@ install-lib: $(objects) $(objects)/$(TARGET)
 install-bin:
 	$(SHELL) $(auxdir)/mkinstalldirs $(bindir)
 	$(LIBTOOL) --mode=install $(INSTALL) -m 755 $(objects)/playwave$(EXE) $(bindir)/playwave$(EXE)
-	$(LIBTOOL) --mode=install $(INSTALL) -m 755 $(objects)/playmus$(EXE) $(bindir)/playmus$(EXE)
+	$(LIBTOOL) --mode=install $(INSTALL) -m 755 
 
 uninstall: uninstall-hdrs uninstall-lib uninstall-bin
 uninstall-hdrs:
